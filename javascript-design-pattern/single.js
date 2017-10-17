@@ -1,11 +1,10 @@
-let __instance;
-
+// 单例模式
 class Single {
     constructor() {
-        if (!__instance) {
-            __instance = this.init();
+        if (!Single.__instance) {
+            Single.__instance = this.init();
         };
-        return __instance;
+        return Single.__instance;
     }
 
     init() {
@@ -21,6 +20,8 @@ class Single {
         };
     }
 }
+
+Single.__instance = null;
 
 var singleA = new Single();
 var singleB = new Single();

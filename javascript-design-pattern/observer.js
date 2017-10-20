@@ -39,7 +39,7 @@ class Eye extends Subject {
     }
 }
 
-class Hand extends Observer{
+class Hand extends Observer {
     constructor(context = ''){
         super();
         this.statu = context;
@@ -50,7 +50,7 @@ class Hand extends Observer{
     }
 }
 
-class Foot extends Observer{
+class Foot extends Observer {
     constructor(context = ''){
         super();
         this.statu = context;

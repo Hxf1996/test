@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        img {
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./code.png" alt="" id="img">
+</body>
+<script type="text/javascript">
+    var img = new Image();
+    img.src = document.getElementById('img').src + '?t=123';
+    img.crossOrigin = "Anonymous";
+    img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var canvasContext = canvas.getContext("2d");
+        canvasContext.drawImage(img, 0, 0);
+        var data = [], result = '';
+        for (var h = 0; h < img.height; h += 2) {
+            for (var w = 0; w < img.width; w += 2) {
+                var imgData = canvasContext.getImageData(w, h, 2, 2);
+                var imgDataArray = imgData.data;
+                data.push(imgDataArray.reduce((sum, value) => {
+                    return sum + value;
+                }) / (2*2*4));
+            }
+        }
+        var arr = ['██', '  '];
+        data.forEach((item, index) => {
+            result += arr[Math.floor(item / 157)];
+            if ((index + 1) % 70 == 0) {
+                result += '\n';
+            }
+        })
+        console.log(result);
+    }
+</script>
+
+</html>

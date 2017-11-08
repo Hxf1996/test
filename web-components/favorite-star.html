@@ -1,0 +1,91 @@
+<!--
+Favorite Button/Star
+@element favorite-star
+@demo https://argelius.github.io/favorite-star/index.html
+-->
+<template id="favorite-star-character">
+<style>
+    .favorite-star-character {
+      color: #ccd6dd;
+      cursor: pointer;
+      display: inline-block;
+      transform: scale3d(1.0, 1.0, 1.0);
+      -webkit-transform: scale3d(1.0, 1.0, 1.0);
+      -moz-transform: scale3d(1.0, 1.0, 1.0);
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    @-webkit-keyframes favorite-star-bounce {
+      0% {
+        -webkit-transform: scale3d(1.0, 1.0, 1.0);
+      }
+      50% {
+        -webkit-transform: scale3d(1.4, 1.4, 1.0);
+      }
+      to {
+        -webkit-transform: scale3d(1.0, 1.0, 1.0);
+      }
+    }
+    @-moz-keyframes favorite-star-bounce {
+      0% {
+        -moz-transform: scale3d(1.0, 1.0, 1.0);
+      }
+      50% {
+        -moz-transform: scale3d(1.4, 1.4, 1.0);
+      }
+      to {
+        -moz-transform: scale3d(1.0, 1.0, 1.0);
+      }
+    }
+    @keyframes favorite-star-bounce {
+      0% {
+        transform: scale3d(1.0, 1.0, 1.0);
+      }
+      50% {
+        transform: scale3d(1.4, 1.4, 1.0);
+      }
+      100% {
+        transform: scale3d(1.0, 1.0, 1.0);
+      }
+    }
+    .favorite-star-character[active] {
+      color: #ffac33;
+      -webkit-animation: favorite-star-bounce 0.3s ease-in-out;
+      -moz-animation: favorite-star-bounce 0.3s ease-in-out;
+      animation: favorite-star-bounce 0.3s ease-in-out;
+    }
+    .favorite-star-character[hover] {
+      color: #ffac33;
+    }
+</style>
+<span class="favorite-star-character">&#x2605;</span>
+</template>
+
+<script>
+class FavoriteStar extends HTMLElement {
+    attachedCallback() {
+        var template = this.owner.querySelector('template');
+        var clone = document.importNode(template.content, true);
+        this.root = this.createShadowRoot();
+        this.root.appendChild(clone);
+        this.element = this.root.querySelector('.favorite-star-character');
+        if (this.hasAttribute('active')) {
+            this.element.setAttribute('active', '');
+        }
+
+        this.element.addEventListener('click', event => this.onClick(event) );
+    }
+
+    onClick(event) {
+        console.log(event);
+    }
+}
+
+if (document.createElement('favorite-star').constructor !== FavoriteStar) {
+    FavoriteStar.prototype.owner = (document._currentScript || document.currentScript).ownerDocument;
+    document.registerElement('favorite-star', FavoriteStar);
+}
+</script>

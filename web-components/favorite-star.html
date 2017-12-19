@@ -1,8 +1,3 @@
-<!--
-Favorite Button/Star
-@element favorite-star
-@demo https://argelius.github.io/favorite-star/index.html
--->
 <template id="favorite-star-character">
 <style>
     .favorite-star-character {
@@ -66,17 +61,23 @@ Favorite Button/Star
 
 <script>
 class FavoriteStar extends HTMLElement {
-    attachedCallback() {
+    connectedCallback() {
         var template = this.owner.querySelector('template');
         var clone = document.importNode(template.content, true);
         this.root = this.createShadowRoot();
         this.root.appendChild(clone);
-        this.element = this.root.querySelector('.favorite-star-character');
-        if (this.hasAttribute('active')) {
-            this.element.setAttribute('active', '');
-        }
 
-        this.element.addEventListener('click', event => this.onClick(event) );
+        // this.active = this.getAttribute("active");
+        // console.log(this.active);
+        // console.log(this.shadowRoot);
+    }
+
+    static get observedAttributes() {
+      return ['active'];
+    }
+
+    attributeChangedCallback(attributeName, oldValue, newValue, namespace) {
+        console.log(attributeName,oldValue,newValue,namespace );
     }
 
     onClick(event) {
@@ -84,8 +85,5 @@ class FavoriteStar extends HTMLElement {
     }
 }
 
-if (document.createElement('favorite-star').constructor !== FavoriteStar) {
-    FavoriteStar.prototype.owner = (document._currentScript || document.currentScript).ownerDocument;
-    document.registerElement('favorite-star', FavoriteStar);
-}
+customElements.define('favorite-star', FavoriteStar);
 </script>

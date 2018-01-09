@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var methodData = [{
+            supportedMethods: ["visa", "mastercard", "amex", "diners", "discover", "jcb", "maestro", "unionpay"]
+        }]
+        var details = {
+            displayItems: [{
+                    label: "Original donation amount",
+                    amount: {
+                        currency: "USD",
+                        value: "65.00"
+                    },
+                },
+                {
+                    label: "Friends and family discount",
+                    amount: {
+                        currency: "USD",
+                        value: "-10.00"
+                    },
+                    pending: true // The price is not determined yet
+                }
+            ],
+            total: {
+                label: "Total",
+                amount: {
+                    currency: "USD",
+                    value: "55.00"
+                }, // US$55.00
+            },
+            shippingOptions: [{
+                    id: 'standard',
+                    label: 'Standard shipping',
+                    amount: {
+                        currency: 'USD',
+                        value: '0.00'
+                    },
+                    selected: true
+                },
+                {
+                    id: 'express',
+                    label: 'Express shipping',
+                    amount: {
+                        currency: 'USD',
+                        value: '12.00'
+                    }
+                }
+            ]
+        }
+        var request = new PaymentRequest(
+            methodData,
+            details, {
+                requestShipping: true,
+                requestPayerPhone: true, // Request user's phone number
+                requestPayerEmail: true, // Request user's email address
+                requestPayerName: true
+            }
+        );
+
+        request.show().then(function(paymentResponse) {
+            paymentResponse.complete("success");
+        }).catch(function(err) {
+            console.error("Uh oh, something bad happened", err.message);
+        });
+
+        request.addEventListener('shippingaddresschange', e => {
+            e.updateWith(((details, addr) => {
+                if (addr.country === 'US') {
+                    var shippingOption = {
+                        id: '',
+                        label: '',
+                        amount: {
+                            currency: 'USD',
+                            value: '0.00'
+                        },
+                        selected: true
+                    };
+                    details.shippingOptions = [shippingOption];
+                } else {
+                    details.shippingOptions = [];
+                }
+                return Promise.resolve(details);
+            })(details, request.shippingAddress));
+        });
+    </script>
+</body>
+
+</html>

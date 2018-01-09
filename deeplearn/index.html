@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/deeplearn"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var math = dl.ENV.math;
+        var a = dl.Array1D.new([1, 2, 3]);
+        var b = dl.Scalar.new(2);
+
+        var result = math.add(a, b);
+
+        // Option 1: With a Promise.
+        result.data().then(data => console.log(data)); // Float32Array([3, 4, 5])
+
+        // Option 2: Synchronous download of data. This is simpler, but blocks the UI.
+        console.log(result.dataSync());
+    </script>
+</body>
+
+</html>

@@ -1,46 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style media="screen">
-        /* span {
-            float: right;
-            border: 1px solid;
-            font-size: 10px;
-            line-height: 10px;
-            padding: 5px;
-            border-radius: 20px;
-            margin-top: 3px;
-            font-family: initial;
-        }
-        div {
-            width: 100px;
-            height: 100px;
-        } */
-        body {
-            font-size: 10px;
-        }
-        .a {
-            font-size: 1.6rem;
-        }
-        .b {
-            font-size: 16px;
-        }
-
-    </style>
 </head>
+
 <body>
-    <!-- <iframe name="richedit" style="height:100px;width:100px;" src="blank.html"></iframe>
     <script type="text/javascript">
-    window.addEventListener("load", function(){
-        console.log(1);
-        frames["richedit"].document.designMode = "on";
-    });
-    </script> -->
-    <span class="a">123</span>
-    <span class="b">123</span>
+    const userAgent = navigator.userAgent;
+    const isWXAndIOS = (!!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) &&
+        (userAgent.indexOf('MicroMessenger') > -1);
+        alert(isWXAndIOS)
+    </script>
 </body>
+
 </html>

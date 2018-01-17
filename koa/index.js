@@ -1,20 +1,15 @@
 const Koa = require('koa');
+
+const middleware = require('./middleware');
+const routes = require('./routes');
+const mongodb = require('./mongodb');
+
+mongodb();
+
 const app = new Koa();
 
-app.use(async (ctx, next) => {
-    const start = Date.now();
-    await next();
-    const ms = Date.now() - start;
-    ctx.set('X-Response-Time', `${ms}ms`);
-});
-app.use(async (ctx, next) => {
-    const start = Date.now();
-    await next();
-    const ms = Date.now() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}`);
-});
-app.use(async ctx => {
-    ctx.body = 'Hello World';
-});
+app.use(middleware());
+app.use(routes.routes());
+app.use(routes.allowedMethods());
 
 app.listen(8080);

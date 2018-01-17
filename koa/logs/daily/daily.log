@@ -1,0 +1,6 @@
+[2018-01-17T10:25:08.745] [INFO] default - You can find logs-files in the log-dir
+
+[2018-01-17T10:25:08.745] [WARN] default - log-dir is a configuration-item in the log4js.json
+
+[2018-01-17T10:25:08.745] [ERROR] default - In This Test log-dir is : './logs/log_test/'
+

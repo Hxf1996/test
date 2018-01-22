@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 
-const Info = mongoose.model('Info')
+const Info = mongoose.model('Info');
 
 module.exports.saveInfo = async (ctx, next) => {
-    const opts = ctx.request.body
+    const opts = ctx.request.body;
 
-    const info = new Info(opts)
-    const saveInfo = await info.save()
-    console.log(saveInfo)
+    const info = new Info(opts);
+    const saveInfo = await info.save();
     if (saveInfo) {
         ctx.body = {
             success: true,
-            info: saveInfo
-        }
+            info: saveInfo,
+        };
     } else {
         ctx.body = {
-            success: false
-        }
+            success: false,
+        };
     }
-}
+};

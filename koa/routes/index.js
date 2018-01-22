@@ -1,6 +1,7 @@
 const Router = require('koa-router');
 
-const { saveInfo } = require('../controlers/info')
+const { saveInfo } = require('../controlers/info');
+
 const router = new Router();
 
 router.get('/', async (ctx, next) => {

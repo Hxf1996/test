@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 const config = require('../config/mongodb.config')
 
-require('./schema/info')
+require('./mongodb/schema/info');
 
 module.exports.connectDatabase = function(uri) {
     return new Promise((resolve, reject) => {
@@ -11,8 +12,10 @@ module.exports.connectDatabase = function(uri) {
             .on('close', () => console.log('Database connection closed.'))
             .once('open', () => resolve(mongoose.connections[0]));
 
-        mongoose.connect(uri, {
+        mongoose.connect(uri || config.dbPath, {
             useMongoClient: true
         });
+    }).catch((error) => {
+        console.log('Promise error', error);
     });
 }

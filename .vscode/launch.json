@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "test",
-            "program": "${workspaceFolder}\\reflect-meatadata\\index.js"
+            "program": "${workspaceFolder}\\reflect-metadata\\index.js"
         },
         {
             "type": "node",

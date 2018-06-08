@@ -16,6 +16,8 @@ function init() {
 
 	mesh = new THREE.Mesh( geometry, material );
 	scene.add( mesh );
+	var controls = new THREE.OrbitControls( mesh );
+
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setSize( window.innerWidth, window.innerHeight );

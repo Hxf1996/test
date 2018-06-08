@@ -16,15 +16,34 @@ function init() {
     let axesHelper = new THREE.AxesHelper( 2000 );
     scene.add( axesHelper );
 
-    let texture = new THREE.TextureLoader().load('./assets/test.jpg');
-    let geometry = new THREE.BoxGeometry(100, 100, 100);
-    cube = new THREE.Mesh(
-        geometry,
-        new THREE.MeshLambertMaterial({
-            map: texture,
-        }),
-    );
-    scene.add(cube);
+    // let texture = new THREE.TextureLoader().load('./assets/test.jpg');
+    // let geometry = new THREE.BoxGeometry(100, 100, 100);
+    // cube = new THREE.Mesh(
+    //     geometry,
+    //     new THREE.MeshLambertMaterial({
+    //         map: texture,
+    //     }),
+    // );
+    // scene.add(cube);
+
+    // var geometry = new THREE.BoxGeometry( 100, 100, 100, 2, 2, 2 );
+    // var materials = [
+    //     new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff, overdraw: 0.5 } ),
+    //     new THREE.MeshBasicMaterial( { color: 0x000000, overdraw: 0.5 } ),
+    //     new THREE.MeshBasicMaterial( { color: 0x123456, overdraw: 0.5 } ),
+    //     new THREE.MeshBasicMaterial( { color: 0x123456, overdraw: 0.5 } ),
+    //     new THREE.MeshBasicMaterial( { color: 0x123456, overdraw: 0.5 } ),
+    //     new THREE.MeshBasicMaterial( { color: 0x123456, overdraw: 0.5 } )
+    // ];
+    // var mesh = new THREE.Mesh( geometry, materials );
+    // scene.add(mesh);
+
+    var spriteMaterial = new THREE.SpriteMaterial( {
+        color: 0x123123,
+    });
+    var sprite = new THREE.Sprite(spriteMaterial);
+    sprite.scale.set(20, 20, 1);
+    scene.add(sprite);
 
     var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
     scene.add( light );
@@ -79,7 +98,7 @@ function onMouseUp(event) {
 
 function onMouseMove( event ) {
     mouseX = (event.clientX - clickX) /  (window.innerWidth / 2);
-    camera.position.applyEuler(new THREE.Euler(0, mouseX, 0, 'XYZ'));
+    camera.position.applyEuler(new THREE.Euler(0, 0.1, 0, 'XYZ'));
     camera.lookAt(0, 0, 0);
 }
 

@@ -1,4 +1,4 @@
 let { a, b }: { a:string, b:number } = {
-    a: 123,
-    b: '123'
+    b: 123,
+    a: '123'
 }

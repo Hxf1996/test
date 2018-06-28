@@ -1752,6 +1752,10 @@ type-is@^1.5.5, type-is@^1.6.16:
     media-typer "0.3.0"
     mime-types "~2.1.18"
 
+typescript@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+
 underscore@1.1.x:
   version "1.1.7"
   resolved "https://registry.npmjs.org/underscore/-/underscore-1.1.7.tgz#40bab84bad19d230096e8d6ef628bff055d83db0"

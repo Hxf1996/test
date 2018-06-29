@@ -52,7 +52,6 @@ export class ImageHelper {
 
         const array = this.imageDataMatrix.toArray();
 
-
         return new ImageData(new Uint8ClampedArray(this.toImageDataArray(array)), this.imageWidth, this.imageHeight);
     }
 }

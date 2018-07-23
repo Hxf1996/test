@@ -7,9 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "test",
+            "name": "typescript",
             "program": "${workspaceFolder}\\typescript\\dist\\test.js",
             "protocol": "inspector"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "mete-data",
+            "program": "${workspaceFolder}\\javascript\\reflect-metadata\\index.js"
         }
     ]
 }

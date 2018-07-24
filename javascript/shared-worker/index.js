@@ -11,4 +11,5 @@ worker.port.onmessage = (e) => {
     console.log(e);
 }
 
-worker.port.messageerror = (e) => console.log;
+worker.port.onerror = (e) => console.log;
+worker.port.onmessageerror = (e) => console.log;

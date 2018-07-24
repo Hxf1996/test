@@ -1,65 +1,45 @@
-const CACHE_VERSIONS = '1.0.11';
-const PRECACHE_URLS = [
-    './',
-    'index.html',
-    'index.css'
-];
-
-self.addEventListener('install', function(event) {
-    console.log('Service Worker: Installing....');
+this.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_VERSIONS).then(function(cache) {
-            console.log('Service Worker: Caching App Shell at the moment......');
-            return cache.addAll(PRECACHE_URLS);
-        }).then(self.skipWaiting())
+        caches.open('v3').then((cache) => {
+            return cache.addAll([
+                '/index.css',
+            ]);
+        })
     );
 });
 
-// Fired when the Service Worker starts up
-self.addEventListener('activate', function(event) {
-
-    console.log('Service Worker: Activating....');
+self.addEventListener('activate', function (event) {
+    const cacheWhitelist = ['v3'];
 
     event.waitUntil(
-        caches.keys().then(cachesName => {
-            return cachesName.filter(cacheName => CACHE_VERSIONS !== cacheName);
-        }).then(cachesToDelete => {
-            return Promise.all(cachesToDelete.map(cacheToDelete => {
-                console.log('Service Worker: Removing Old Cache', cacheToDelete);
-                return caches.delete(cacheToDelete);
-            }));
-        }).then(() => self.clients.claim())
-    );
-});
-
-
-self.addEventListener('fetch', function(event) {
-
-    console.log('Service Worker: Fetch', event.request.url);
-
-    console.log("Url", event.request.url);
-
-    if (event.request.url.startsWith(self.location.origin)) {
-        event.respondWith(
-            caches.match(event.request).then(response => {
-                if (response) {
-                    return response;
+        caches.keys().then(function (keyList) {
+            return Promise.all(keyList.map(function (key) {
+                if (cacheWhitelist.indexOf(key) === -1) {
+                    return caches.delete(key);
                 }
-                const fetchRequest = event.request.clone();
-                return fetch(fetchRequest).then(
-                    function(response) {
-                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-                        var responseToCache = response.clone();
-                        caches.open(CACHE_VERSIONS)
-                            .then(function(cache) {
-                                cache.put(event.request, responseToCache);
-                            });
-                        return response;
-                    }
-                );
-            })
-        );
-    }
+            }));
+        })
+    );
+});
+
+this.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then((response) => {
+            return response || fetch(event.request);
+        })
+    );
+});
+
+self.addEventListener('push', function (event) {
+    console.log('[Service Worker] Push Received.');
+    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+    const title = 'Push Codelab';
+    const options = {
+        body: 'Yay it works.',
+        icon: 'images/icon.png',
+        badge: 'images/badge.png'
+    };
+
+    event.waitUntil(self.registration.showNotification(title, options));
 });

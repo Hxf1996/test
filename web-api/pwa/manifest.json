@@ -7,7 +7,8 @@
     "orientation": "portrait",
     "background_color": "#f5f5f5",
     "theme_color": "#f5f5f5",
-    "icons": [{
+    "icons": [
+        {
             "src": "./images/192x192.png",
             "type": "image/png",
             "sizes": "192x192"
@@ -43,6 +44,5 @@
         "website": "https://twitter.com/unicodeveloper",
         "github": "https://github.com/unicodeveloper",
         "source-repo": "https://github.com/unicodeveloper/pwa-commits"
-    },
-    "gcm_sender_id": "571712848651"
+    }
 }

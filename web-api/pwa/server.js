@@ -2,12 +2,11 @@ const webpush = require('web-push');
 
 webpush.setVapidDetails(
     'mailto:web-push-book@haorooms.com',
-    'BAf21skUYrehNsIHsF2V82tNjNBc_v0E0kyIqY5jYYz30uwwird4gQEvdi-7gWELwn9aThPDCFBTRSAnNKXmX5A',
-    'zru_N1Q7mCUVf0aHPEU1027Q9cqu6dBEl8SurvWvdg0'
+    'BFnnc0EQGvH7gAIxGxeVQHvrjc4YThbceoFm6ur5-N5HZ5uI--zTLXuQNVTMov_h7geRW49UD0HO8SvO-zBsBRo',
+    'cxRDon1SwOwZSzaws_rWd05_3e6bQRhVehpZ27_xhmM'
 );
-webpush.setGCMAPIKey('dV-hAdDrEko:APA91bGe2RZS0UbA_vSwe0feGX0Df_XvsukF8AfwqvEzNM_qtNBiUXoVo1G-lZKok50fvzW6WqqeaaAe3rj4xeJb7fZ-TS2TH9IETnt1V6nDTYOjU1phxSVI1ewXrAB8ndvrZcoRjAOm');
 
-const pushSubscription = JSON.parse('{"endpoint":"https://fcm.googleapis.com/fcm/send/fk0UqSRDT-E:APA91bFQM3CdOu1kPJ3rvIj6ncsGF66GKLsfo4C7PgWxpayauQOye9IA61PWZ4nGuJi3MrqhO_2GYsQX68ly7Mlr8b6TwXOFhotzxszNsKRafz2Kjkqpb344oqg0mhWnw_TwM6RvDkGoX9z03088Xjevn1doHapJ3Q","expirationTime":null,"keys":{"p256dh":"BFCr8e8Mu7j8E4gEqKlp3529y_WMC8qGZi3zrSDd2i7rdpwEWXJPN8CuGVRU4NnXfPtYE6WECt50xJGLubcn-yY","auth":"jZWiaHpsWvQDfwjhoTHnFA"}}');
+const pushSubscription = JSON.parse('{"endpoint":"https://fcm.googleapis.com/fcm/send/dW0fzE3rf2M:APA91bGmlXZmwmuK1qdLSkAt-QXPXJDGVO45Br2aI7AbGd28O_8qf08pzsBo4CPSd4FDE5YdrmYUgL8Ldw4IqNeSBR3MMkGuZZwQyBDkZ-pK-8J1tMloC01dGZzTbYn6G3JajLEhWvxkfeM6e9_yGxvXEnDrxN_xvg","expirationTime":null,"keys":{"p256dh":"BHq_NUr5zjrFXLJozYa0p_Jq2YALoe86VYZxaOOSTDC2mueD5kHX2lVhzl3AR0GG2xKQVpHyCChj8Ry-dBtZ76U","auth":"V1pphebktcU9xvWEAkUTjQ"}}');
 
 const payload = '123';
 

@@ -15,7 +15,7 @@
             "type": "node",
             "request": "launch",
             "name": "mete-data",
-            "program": "${workspaceFolder}\\javascript\\reflect-metadata\\index.js"
+            "program": "${workspaceFolder}\\javascript\\crypto\\test1.js"
         }
     ]
 }

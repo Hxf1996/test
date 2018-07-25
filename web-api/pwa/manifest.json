@@ -44,5 +44,6 @@
         "website": "https://twitter.com/unicodeveloper",
         "github": "https://github.com/unicodeveloper",
         "source-repo": "https://github.com/unicodeveloper/pwa-commits"
-    }
+    },
+    "gcm_sender_id": "103953800507"
 }

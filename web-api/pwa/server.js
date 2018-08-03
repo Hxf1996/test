@@ -1,4 +1,5 @@
 const webpush = require('web-push');
+const createJWT = require('./jwt');
 
 webpush.setVapidDetails(
     'mailto:web-push-book@haorooms.com',
@@ -14,11 +15,17 @@ const options = {
     proxy: 'http://10.1.35.1:8080',
 };
 
-webpush.sendNotification(
-    pushSubscription,
-    payload,
-    options
-).catch(function (error) {
-    console.log(error);
-    process.exit(1);
-});
+const jwt = createJWT('cxRDon1SwOwZSzaws_rWd05_3e6bQRhVehpZ27_xhmM');
+
+
+const a = webpush.generateRequestDetails(pushSubscription, payload, options);
+console.log(a);
+
+// webpush.sendNotification(
+//     pushSubscription,
+//     payload,
+//     options
+// ).catch(function (error) {
+//     console.log(error);
+//     process.exit(1);
+// });

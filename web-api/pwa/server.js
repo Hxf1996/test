@@ -17,8 +17,9 @@ const options = {
 
 const jwt = createJWT('cxRDon1SwOwZSzaws_rWd05_3e6bQRhVehpZ27_xhmM');
 
-
 const a = webpush.generateRequestDetails(pushSubscription, payload, options);
+// console.log(jwt);
+
 console.log(a);
 
 // webpush.sendNotification(
@@ -27,5 +28,4 @@ console.log(a);
 //     options
 // ).catch(function (error) {
 //     console.log(error);
-//     process.exit(1);
 // });

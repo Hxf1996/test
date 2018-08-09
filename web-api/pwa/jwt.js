@@ -1,14 +1,20 @@
 const crypto = require('crypto');
 
+function getFutureExpirationTimestamp(numSeconds) {
+    const futureExp = new Date();
+    futureExp.setSeconds(futureExp.getSeconds() + numSeconds);
+    return Math.floor(futureExp.getTime() / 1000);
+}
+
 module.exports = function (key) {
     const header = {
-        "alg": "HS256",
-        "typ": "JWT"
+        "typ": "JWT",
+        "alg": "ES256"
     }
     const payload = {
-        "aud": "https://some-push-service.org",
-        "exp": "1469618703",
-        "sub": "mailto:example@web-push-book.org"
+        "aud": "https://fcm.googleapis.com",
+        "exp": "1533842293",
+        "sub": "mailto:web-push-book@haorooms.com"
     }
 
     const signature = [];

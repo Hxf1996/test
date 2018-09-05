@@ -1,7 +1,18 @@
-const Y = f => (g => g(g))(g => f(x => g(g)(x)));
+class a {
+    constructor() {
+        console.log(this);
+    }
+}
 
-const a = Y(ask => count =>
-    prompt("Accept terms?") !== "yes"
-        ? ask(count + 1)
-        : alert("At last! It took " + count + " times.")
-);
+class b extends a {
+    constructor() {
+        super();
+        this.d = 123;
+    }
+}
+
+const d = Object.getPrototypeOf(b) === a.prototype.constructor
+
+const c = new b();
+
+console.log(1);

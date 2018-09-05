@@ -1,1 +1,3 @@
 node_modules
+clojure/out
+clojure/.cpcache

@@ -1,7 +1,3 @@
-let { a, b }: { a: string, b: number } = {
-    b: 123,
-    a: '123'
+type a<T> = {
+    [P in keyof T]: T[P];
 }
-
-console.log(1);
-console.log(1);

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>
+    <script>
+        const ipfs = new Ipfs()
+        const data = 'Hello from IPFS, <YOUR NAME HERE>!'
+        ipfs.once('ready', async () => {
+            console.log('IPFS 节点准备完成! 当前版本为: ' + (await ipfs.id()).agentVersion)
+            console.log('要发布的数据: ' + data)
+            const files = await ipfs.files.add(ipfs.types.Buffer.from(data))
+            const cid = files[0].hash
+            console.log('数据所获得的 CID: ' + cid)
+
+            const dataFromIpfs = await ipfs.files.cat(cid)
+            console.log('从 IPFS 回读出来的数据: ' + String(dataFromIpfs))
+            console.log('Bonus: open at one of public HTTP gateways: https://ipfs.io/ipfs/' + cid)
+        })
+    </script>
+</body>
+
+</html>

@@ -11,10 +11,17 @@
 <body>
     <script>
         var methodData = [{
-            supportedMethods: ["visa", "mastercard", "amex", "diners", "discover", "jcb", "maestro", "unionpay"]
-        }]
+            supportedMethods: 'basic-card',
+            data: {
+                supportedNetworks: ['visa', 'mastercard', 'amex', 'jcb',
+                    'diners', 'discover', 'mir', 'unionpay'],
+                supportedTypes: ['credit', 'debit']
+            }
+        }];
+
         var details = {
-            displayItems: [{
+            displayItems: [
+                {
                     label: "Original donation amount",
                     amount: {
                         currency: "USD",
@@ -37,7 +44,8 @@
                     value: "55.00"
                 }, // US$55.00
             },
-            shippingOptions: [{
+            shippingOptions: [
+                {
                     id: 'standard',
                     label: 'Standard shipping',
                     amount: {
@@ -62,17 +70,20 @@
                 requestShipping: true,
                 requestPayerPhone: true, // Request user's phone number
                 requestPayerEmail: true, // Request user's email address
-                requestPayerName: true
+                requestPayerName: true,
+                shippingType: 'pickup'
             }
         );
 
-        request.show().then(function(paymentResponse) {
+        request.show().then(function (paymentResponse) {
+            console.log(paymentResponse);
+
             paymentResponse.complete("success");
-        }).catch(function(err) {
+        }).catch(function (err) {
             console.error("Uh oh, something bad happened", err.message);
         });
 
-        request.addEventListener('shippingaddresschange', e => {
+        request.addEventListener('shippingoptionchange', e => {
             e.updateWith(((details, addr) => {
                 if (addr.country === 'US') {
                     var shippingOption = {
@@ -89,7 +100,7 @@
                     details.shippingOptions = [];
                 }
                 return Promise.resolve(details);
-            })(details, request.shippingAddress));
+            })(details, request));
         });
     </script>
 </body>

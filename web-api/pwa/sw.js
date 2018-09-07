@@ -1,4 +1,4 @@
-this.addEventListener('install', (event) => {
+self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open('v3').then((cache) => {
             return cache.addAll([
@@ -22,9 +22,12 @@ self.addEventListener('activate', function (event) {
     );
 });
 
-this.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
+            if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+                return;
+            }
             return response || fetch(event.request);
         })
     );

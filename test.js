@@ -1,18 +1,10 @@
-class a {
-    constructor() {
-        console.log(this);
+var reverse = function (x) {
+    const result = 0;
+    while (x != 0) {
+        const pop = x % 10;
+        x /= 10;
+        if (result)
     }
-}
+};
 
-class b extends a {
-    constructor() {
-        super();
-        this.d = 123;
-    }
-}
-
-const d = Object.getPrototypeOf(b) === a.prototype.constructor
-
-const c = new b();
-
-console.log(1);
+console.log(reverse(-123));

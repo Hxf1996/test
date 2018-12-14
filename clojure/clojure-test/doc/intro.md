@@ -1,3 +1,3 @@
-# Introduction to my-clojure
+# Introduction to clojure-test
 
 TODO: write [great documentation](http://jacobian.org/writing/what-to-write/)

@@ -1,4 +1,4 @@
-# my-clojure
+# clojure-test
 
 FIXME: description
 
@@ -10,7 +10,7 @@ Download from http://example.com/FIXME.
 
 FIXME: explanation
 
-    $ java -jar my-clojure-0.1.0-standalone.jar [args]
+    $ java -jar clojure-test-0.1.0-standalone.jar [args]
 
 ## Options
 

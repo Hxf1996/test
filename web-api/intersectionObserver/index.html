@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+            background: red;
+        }
+
+        #a {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div id="a"></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        var options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: [0.5, 1.0]
+        }
+        var callback = function (entries, observer) {
+            console.log(entries, observer);
+        };
+        var observer = new IntersectionObserver(callback, options);
+        observer.observe(document.querySelector('#a'));
+    </script>
+</body>
+
+</html>

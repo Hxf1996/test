@@ -1,11 +1,15 @@
 class PlaceholderBoxPropsPainter {
     static get inputProperties() {
-        return ['border-top-width', 'border-top-color'];
+        return ['border-top-width', 'border-top-color', '--a'];
     }
 
-    paint(ctx, size, props) {
-        console.log(ctx, size, props);
+    static get inputArguments() {
+        return [
+            '<number>',
+        ];
+    }
 
+    paint(ctx, size, props, args) {
         ctx.lineWidth = 2;
         ctx.strokeStyle = '#666';
         let borderTopWidthProp = props.get('border-top-width');

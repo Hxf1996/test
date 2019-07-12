@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .placeholder {
+            --a: 1px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            background-image: paint(placeholder-box, 10);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="placeholder"></div>
+    <canvas></canvas>
+    <script>
+        CSS.registerProperty({
+            name: '--a',
+            syntax: '<length>',
+            initialValue: 0,
+            inherits: false
+        });
+        CSS.paintWorklet.addModule('./index.js');
+    </script>
+</body>
+
+</html>

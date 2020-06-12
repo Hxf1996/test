@@ -5,7 +5,7 @@ const effect = new KeyframeEffect(div, [
     { transform: 'translateY(100%)' },
 ], { duration: 3000, fill: 'forwards' });
 
-const animation = new Animation(effect, document.timeline);
+const animation = new Animation(effect);
 
 console.log(animation);
 

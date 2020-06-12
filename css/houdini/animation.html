@@ -30,6 +30,7 @@
                 timeRange: 1000
             });
             console.log(scrollTimeline);
+            window.a = scrollTimeline;
             const slowParallax = new WorkletAnimation(
                 'ani',
                 new KeyframeEffect(asd, [{ 'transform': 'translateY(0)' }, { 'transform': 'translateY(' + -500 + 'px)' }], { duration: 1000 }),

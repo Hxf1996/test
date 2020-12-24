@@ -1,26 +1,13 @@
-registerLayout('center', class {
+registerLayout('center1', class {
     static inputProperties = ['line-height', 'text-align', 'font-size'];
     static childInputProperties = ["--relative-name", "--font-size1"];
     static layoutOptions = {
         childDisplay: 'normal',
-        sizing: 'manual',
+        sizing: 'block-like',
     }
 
     async intrinsicSizes(children, edges, styleMap) {
-        console.log(children);
-        const childrenSizes = await children.map((child) => {
-            return child.intrinsicSizes();
-        });
-
-        const maxContentSize = childrenSizes.reduce((max, childSizes) => {
-            return Math.max(max, childSizes.maxContentSize);
-        }, 0) + edges.all.inline;
-
-        const minContentSize = childrenSizes.reduce((max, childSizes) => {
-            return Math.max(max, childSizes.minContentSize);
-        }, 0) + edges.all.inline;
-
-        return { maxContentSize, minContentSize };
+        console.log(1);
     }
 
     async layout(children, edges, constraints, styleMap, breakToken) {

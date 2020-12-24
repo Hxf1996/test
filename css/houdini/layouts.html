@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        #a {
-            border: solid 2px;
-            overflow-y: scroll;
-            padding-top: 2px;
-            --padding: 20;
-            --columns: 3;
-            display: layout(masonry);
-            width: 400px;
-            height: 400px;
+        body{font-size:14px;line-height:1.42858}
+    /* .demo {
+        display: layout(center1);
+    } */
+        section {
+            padding-left: 1px;
+            padding-right: 2px;
+            padding-top: 3px;
+            padding-bottom: 4px;
+            border-top: 1px solid;
+            /* height: 200px; */
+            display: layout(center);
+            outline: 1px dotted;
+            --font-size1: 14px;
+        }
+        section p {
+            --font-size2: 14px;
+            margin: 0 -999px 0 -3800px;
         }
     </style>
 </head>
 <body>
-    <div id="a">
-        <div style="height: 100px">1</div>
-        <div>2</div>
-        <div style="height: 100px">3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
+    <div class="demo">
+        <section data-a="1">
+            <p>第1行</p>
+            <p>第2行，文字较多</p>
+            <p>第3行，哈</p>
+            <p>第4行</p>
+            <p>第5行</p>
+        </section>
     </div>
-    <script>
-        CSS.layoutWorklet.addModule('./layout.js');
-    </script>
 </body>
+<script>
+    if (window.CSS) {
+        CSS.layoutWorklet.addModule('./layout.js');
+        CSS.layoutWorklet.addModule('./layout1.js');
+    }
+</script>
 </html>
